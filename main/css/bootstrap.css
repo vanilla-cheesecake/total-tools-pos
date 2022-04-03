@@ -38,9 +38,9 @@ margin:auto;
 background:#fff;
 color:#000;
 width:400px;
-height:200px;
+height:250px;
 margin:auto;
-margin-top:90px;
+margin-top:50px;
 padding:30px;
 border:1px solid #484848;
 box-shadow:0 5px 5px 1px #000;
@@ -214,7 +214,7 @@ body {
   font-size: 18px;
   line-height: 20px;
   color: #333333;
-  background: #ffffff url("../img/bg/4.png");
+  background: white;
     padding-top: 60px;
         padding-bottom: 40px;
 }

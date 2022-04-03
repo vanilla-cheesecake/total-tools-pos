@@ -165,7 +165,7 @@ window.onload=startclock;
 			<li class="active">Products</li>
 			</ul>
 
-
+<br><br>
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 			<?php 
@@ -182,12 +182,13 @@ window.onload=startclock;
 				$rowcount123 = $result->rowcount();
 
 			?>
-				<div style="text-align:center;">
-			Total Number of Products:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
+
+			<div style="text-align:center;">
+			TOTAL PRODUCTS:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
 			</div>
 			
 			<div style="text-align:center;">
-			<font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font> Products are below QTY of 10 
+				LOW STOCKS <font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font>
 			</div>
 </div>
 
@@ -235,7 +236,7 @@ window.onload=startclock;
 				$total=$row['total'];
 				$availableqty=$row['qty'];
 				if ($availableqty < 10) {
-				echo '<tr class="alert alert-warning record" style="color: #fff; background:rgb(255, 95, 66);">';
+				echo '<tr class="alert alert-warning record" style="color: #fff; background:rgb(0,113,122);">';
 				}
 				else {
 				echo '<tr class="record">';
@@ -246,7 +247,7 @@ window.onload=startclock;
 			<td><?php echo $row['product_code']; ?></td>
 			<td><?php echo $row['gen_name']; ?></td>
 			<td><?php echo $row['product_name']; ?></td>
-					<td><?php echo $row['supplier']; ?></td>
+			<td><?php echo $row['supplier']; ?></td>
 			<td><?php echo $row['date_arrival']; ?></td>
 			<td><?php echo $row['expiry_date']; ?></td>
 			<td><?php

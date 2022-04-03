@@ -10,7 +10,7 @@
 <html>
 <head>
 <title>
-POS
+TOTAL TOOLS 
 </title>
     <link rel="shortcut icon" href="main/images/pos.jpg">
 
@@ -49,8 +49,8 @@ if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count
 }
 ?>
 <form action="login.php" method="post">
-
-			<font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 15px #000; color:#fff;"><center>EREC`s Pharmacy</center></font>
+			<img src="main/images/logototal.png" alt="">
+			<font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 15px #000; color:#fff;"><center></center></font>
 		<br>
 
 		
