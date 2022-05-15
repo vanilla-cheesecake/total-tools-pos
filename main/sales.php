@@ -103,7 +103,7 @@ function createRandomPassword() {
 	}
 	return $pass;
 }
-$finalcode='RS-'.createRandomPassword();
+$finalcode='invoice-'.createRandomPassword();
 ?>
 <body>
 <?php include('navfixed.php');?>
@@ -163,6 +163,27 @@ if($position=='admin') {
 <select name="product" style="width:650px; "class="chzn-select" required>
 <option></option>
 	<?php
+
+	/*** <input type="text" list="items">
+
+<datalist name="product" id="items"style="width:650px; "class="chzn-select" required>
+<option></option>
+	<?php
+	include('../connect.php');
+	$result = $db->prepare("SELECT * FROM products");
+		$result->bindParam(':userid', $res);
+		$result->execute();
+		for($i=0; $row = $result->fetch(); $i++){
+	?>
+
+		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+	<?php
+				}
+			?>
+
+</datalist> */
+
+
 	include('../connect.php');
 	$result = $db->prepare("SELECT * FROM products");
 		$result->bindParam(':userid', $res);
@@ -174,6 +195,8 @@ if($position=='admin') {
 				}
 			?>
 </select>
+
+
 <input type="number" name="qty" value="1" min="1" placeholder="Qty" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" / required>
 <input type="hidden" name="discount" value="" autocomplete="off" style="width: 68px; height:30px; padding-top:6px; padding-bottom: 4px; margin-right: 4px; font-size:15px;" />
 <input type="hidden" name="date" value="<?php echo date("m/d/y"); ?>" />

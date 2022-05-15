@@ -96,8 +96,41 @@ $finalcode='RS-'.createRandomPassword();
 $position=$_SESSION['SESS_LAST_NAME'];
 if($position=='cashier') {
 ?>
-
-    <a href="../index.php">Logout</a>
+<div class="container-fluid" style="background-color: white;">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well sidebar-nav" style="background-color: rgb(0,113,122);">
+                    <ul class="nav nav-list">
+                        <li class="active"><a href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>
+                        <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a></li>
+                    
+                        <li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a></li>
+        
+   
+                        <br><br><br><br><br><br>
+                        <li>
+                            <div class="hero-unit-clock">
+                                <form name="clock">
+                                    <fontcolor="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/span-->
+            <div class="span10">
+                <div class="contentheader">
+                    <i class="icon-dashboard"></i> Dashboard
+                </div>
+                <ul class="breadcrumb">
+                    <li class="active">Dashboard</li>
+                </ul>
+                <font style=" font:bold 30px 'Aleo';  color:#222222;">
+                    <center>TOTAL TOOLS ONE-STOP TOOL SHOP</center>
+                </font>
+   
     <?php
 }
 if($position=='admin') {

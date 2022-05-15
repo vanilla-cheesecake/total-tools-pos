@@ -3,8 +3,8 @@
 <center><h4><i class="icon-plus-sign icon-large"></i> Add Product</h4></center>
 <hr>
 <div id="ac">
-<span>Brand Name : </span><input type="text" style="width:265px; height:30px;" name="code" ><br>
-<span>Generic Name : </span><input type="text" style="width:265px; height:30px;" name="gen" Required/><br>
+<span>Barcode : </span><input type="text" style="width:265px; height:30px;" name="code" ><br>
+<span>Item Name : </span><input type="text" style="width:265px; height:30px;" name="gen" Required/><br>
 <span>Category / Description : </span><textarea style="width:265px; height:50px;" name="name"> </textarea><br>
 <span>Date Arrival: </span><input type="date" style="width:265px; height:30px;" name="date_arrival" /><br>
 <span>Expiry Date : </span><input type="date" value="<?php echo date ('M-d-Y'); ?>" style="width:265px; height:30px;" name="exdate" /><br>
