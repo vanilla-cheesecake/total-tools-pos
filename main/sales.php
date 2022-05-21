@@ -2,6 +2,7 @@
 <html>
 <head>
 	<!-- js -->			
+
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
@@ -20,7 +21,7 @@ POS
 	require_once('auth.php');
 ?>
        
-		<link href="vendors/uniform.default.css" rel="stylesheet" media="screen">
+	<link href="vendors/uniform.default.css" rel="stylesheet" media="screen">
   <link href="css/bootstrap.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
@@ -42,7 +43,9 @@ POS
 	  <script src="vendors/jquery-1.7.2.min.js"></script>
     <script src="vendors/bootstrap.js"></script>
 
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js">
 	
 <link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
 <!--sa poip up-->
@@ -81,6 +84,7 @@ showtime();
 }
 window.onload=startclock;
 // End -->
+$(".chosen").chosen();
 </SCRIPT>	
 
 </head>
@@ -155,33 +159,17 @@ if($position=='admin') {
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: none;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 </div>
-													
+								
 <form action="incoming.php" method="post" >
 											
 <input type="hidden" name="pt" value="<?php echo $_GET['id']; ?>" />
 <input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-<select name="product" style="width:650px; "class="chzn-select" required>
+
+<select class="chosen" name="product" style="width:650px; "class="chzn-select" required>
 <option></option>
 	<?php
 
-	/*** <input type="text" list="items">
-
-<datalist name="product" id="items"style="width:650px; "class="chzn-select" required>
-<option></option>
-	<?php
-	include('../connect.php');
-	$result = $db->prepare("SELECT * FROM products");
-		$result->bindParam(':userid', $res);
-		$result->execute();
-		for($i=0; $row = $result->fetch(); $i++){
-	?>
-
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
-	<?php
-				}
-			?>
-
-</datalist> */
+	
 
 
 	include('../connect.php');
@@ -194,6 +182,7 @@ if($position=='admin') {
 	<?php
 				}
 			?>
+			
 </select>
 
 
@@ -205,8 +194,8 @@ if($position=='admin') {
 <table class="table table-bordered" id="resultTable" data-responsive="table">
 	<thead>
 		<tr>
+			<th> Barcode </th>
 			<th> Product Name </th>
-			<th> Generic Name </th>
 			<th> Category / Description </th>
 			<th> Price </th>
 			<th> Qty </th>
@@ -314,6 +303,13 @@ if($position=='admin') {
 </div>
 </div>
 </div>
+<script type="text/javascript">
+      $(".chosen").chosen();
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 <?php include('footer.php');?>
 </html>
