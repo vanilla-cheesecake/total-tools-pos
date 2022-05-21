@@ -95,6 +95,7 @@ $finalcode='RS-'.createRandomPassword();
     <?php
 $position=$_SESSION['SESS_LAST_NAME'];
 if($position=='cashier') {
+    
 ?>
 <div class="container-fluid" style="background-color: white;">
         <div class="row-fluid">
@@ -130,8 +131,9 @@ if($position=='cashier') {
                 <font style=" font:bold 30px 'Aleo';  color:#222222;">
                     <center>TOTAL TOOLS ONE-STOP TOOL SHOP</center>
                 </font>
-   
+    
     <?php
+    
 }
 if($position=='admin') {
 ?>

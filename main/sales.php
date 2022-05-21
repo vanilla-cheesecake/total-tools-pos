@@ -112,7 +112,7 @@ $position=$_SESSION['SESS_LAST_NAME'];
 if($position=='cashier') {
 ?>
 <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>
-
+<p>addslashes</p>
 <a href="../index.php">Logout</a>
 <?php
 }
