@@ -116,10 +116,37 @@ window.onload=startclock;
 <body>
 
 <?php include('navfixed.php');?>
-	
-	<div class="container-fluid">
+	<?php
+	$position=$_SESSION['SESS_LAST_NAME'];
+	if($position=='cashier') {
+	?>
+<div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
+          <div class="well sidebar-nav" style="background-color: rgb(0,113,122);">
+              <ul class="nav nav-list">
+              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+			<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>
+			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>  </li>
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Check Products</a>                                     </li>
+			<br><br><br><br><br><br>
+                        <li>
+                            <div class="hero-unit-clock">
+                                <form name="clock">
+                                    <fontcolor="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>             
+					</div><!--/.well -->
+        </div><!--/span-->
+	<?php
+	} 
+	if ($position = $position=='admin'){?>
+
+	<div class="container-fluid">
+      <div class="row-fluid">
+		<div class="span2">
              <div class="well sidebar-nav">
                  <ul class="nav nav-list">
               <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
@@ -143,6 +170,7 @@ window.onload=startclock;
           </div><!--/.well -->
         </div><!--/span-->
 		
+<?php } ?>
 	<div class="span10">
 	<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
 
@@ -151,8 +179,8 @@ window.onload=startclock;
 	<div style="width: 100%; height: 190px;" >
 	<div style="width: 900px; float: left;">
 	<center><div style="font:bold 25px 'Aleo';">Sales Receipt</div>
-	TOTAL TOOLS ONE-STOP TOOL SHOP	<br>
-	(STORE LOCATION)	<br>	<br>
+	TOTAL TOOLS ONE-STOP TOOL STATION	<br>
+		<br>	<br>
 	</center>
 	<div>
 	<?php
@@ -308,5 +336,4 @@ window.onload=startclock;
 		</div>	
 </div>
 </div>
-
 

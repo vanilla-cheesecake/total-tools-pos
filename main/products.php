@@ -130,6 +130,199 @@ window.onload=startclock;
 
 <body>
 <?php include('navfixed.php');?>
+
+<?php
+$position=$_SESSION['SESS_LAST_NAME'];
+if($position=='cashier') {
+?>
+<div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span2">
+          <div class="well sidebar-nav" style="background-color: rgb(0,113,122);">
+              <ul class="nav nav-list">
+              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+			<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>
+			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>  </li>
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Check Products</a>                                     </li>
+			<br><br><br><br><br><br>
+                        <li>
+                            <div class="hero-unit-clock">
+                                <form name="clock">
+                                    <fontcolor="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>             
+					</div><!--/.well -->
+        </div><!--/span-->
+		<div class="span10">
+	<div class="contentheader">
+			<i class="icon-table"></i> Products
+			</div>
+			<ul class="breadcrumb">
+			<li><a href="index.php">Dashboard</a></li> /
+			<li class="active">Products</li>
+			</ul>
+
+<br><br>
+<div style="margin-top: -19px; margin-bottom: 21px;">
+<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+			<?php 
+			include('../connect.php');
+				$result = $db->prepare("SELECT * FROM products ORDER BY qty_sold DESC");
+				$result->execute();
+				$rowcount = $result->rowcount();
+			?>
+			
+			<?php 
+			include('../connect.php');
+				$result = $db->prepare("SELECT * FROM products where qty < 5 ORDER BY product_id DESC");
+				$result->execute();
+				$rowcount123 = $result->rowcount();
+
+			?>
+
+			<div style="text-align:center;">
+			TOTAL PRODUCTS:  <font color="green" style="font:bold 22px 'Aleo';">[<?php echo $rowcount;?>]</font>
+			</div>
+			
+			<div style="text-align:center;">
+				LOW STOCKS <font style="color:rgb(255, 95, 66);; font:bold 22px 'Aleo';">[<?php echo $rowcount123;?>]</font>
+			</div>
+</div>
+
+
+<center>
+<input type="text" style="padding:15px;" name="filter" value="" id="filter" placeholder="Search Product..." autocomplete="off" />
+
+</center>
+<table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
+	<thead>
+		<tr>
+			<th width="12%"> Barcode </th>
+			<th width="14%"> Item Name </th>
+			<th width="13%"> Category / Description </th>
+			<th width="7%"> Supplier </th>
+			<th width="9%"> Date Received </th>
+			
+			<th width="6%"> Original Price </th>
+			<th width="6%"> Selling Price </th>
+			<th width="6%"> QTY </th>
+			<th width="5%"> Qty Left </th>
+			<th width="8%"> Total </th>
+
+		</tr>
+	</thead>
+	<tbody>
+		
+			<?php
+			function formatMoney($number, $fractional=false) {
+					if ($fractional) {
+						$number = sprintf('%.2f', $number);
+					}
+					while (true) {
+						$replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number);
+						if ($replaced != $number) {
+							$number = $replaced;
+						} else {
+							break;
+						}
+					}
+					return $number;
+				}
+				include('../connect.php');
+				$result = $db->prepare("SELECT *, price * qty as total FROM products ORDER BY product_id DESC");
+				$result->execute();
+				for($i=0; $row = $result->fetch(); $i++){
+				$total=$row['total'];
+				$availableqty=$row['qty'];
+				if ($availableqty < 10) {
+				echo '<tr class="alert alert-warning record" style="color: #fff; background:rgb(0,113,122);">';
+				}
+				else {
+				echo '<tr class="record">';
+				}
+			?>
+		
+
+			<td><?php echo $row['product_code']; ?></td>
+			<td><?php echo $row['gen_name']; ?></td>
+			<td><?php echo $row['product_name']; ?></td>
+			<td><?php echo $row['supplier']; ?></td>
+			<td><?php echo $row['date_arrival']; ?></td>
+	
+			<td><?php
+			$oprice=$row['o_price'];
+			echo formatMoney($oprice, true);
+			?></td>
+			<td><?php
+			$pprice=$row['price'];
+			echo formatMoney($pprice, true);
+			?></td>
+			<td><?php echo $row['qty_sold']; ?></td>
+			<td><?php echo $row['qty']; ?></td>
+			<td>
+			<?php
+			$total=$row['total'];
+			echo formatMoney($total, true);
+			?>
+			</td>		</tr>
+			<?php
+				}
+			?>
+		
+		
+		
+	</tbody>
+</table>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+
+<script src="js/jquery.js"></script>
+  <script type="text/javascript">
+$(function() {
+
+
+$(".delbutton").click(function(){
+
+//Save the link in a variable called element
+var element = $(this);
+
+//Find the id of the link that was clicked
+var del_id = element.attr("id");
+
+//Built a url to send
+var info = 'id=' + del_id;
+ if(confirm("Sure you want to delete this Product? There is NO undo!"))
+		  {
+
+ $.ajax({
+   type: "GET",
+   url: "deleteproduct.php",
+   data: info,
+   success: function(){
+   
+   }
+ });
+         $(this).parents(".record").animate({ backgroundColor: "#fbc7c7" }, "fast")
+		.animate({ opacity: "hide" }, "slow");
+
+ }
+
+return false;
+
+});
+
+});
+</script>
+
+<?php
+}
+if($position=='admin') {
+?>
+	
 <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
@@ -139,8 +332,6 @@ window.onload=startclock;
 			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
 			<li class="active"><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
 			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
 
 
 			<br><br><br><br><br><br>		
@@ -154,8 +345,11 @@ window.onload=startclock;
 			</li>
 				
 				</ul>             
-          </div><!--/.well -->
+     
+				</div><!--/.well -->
         </div><!--/span-->
+
+
 	<div class="span10">
 	<div class="contentheader">
 			<i class="icon-table"></i> Products
@@ -177,7 +371,7 @@ window.onload=startclock;
 			
 			<?php 
 			include('../connect.php');
-				$result = $db->prepare("SELECT * FROM products where qty < 10 ORDER BY product_id DESC");
+				$result = $db->prepare("SELECT * FROM products where qty < 5 ORDER BY product_id DESC");
 				$result->execute();
 				$rowcount123 = $result->rowcount();
 
@@ -203,7 +397,7 @@ window.onload=startclock;
 			<th width="13%"> Category / Description </th>
 			<th width="7%"> Supplier </th>
 			<th width="9%"> Date Received </th>
-			<th width="10%"> Expiry Date </th>
+			
 			<th width="6%"> Original Price </th>
 			<th width="6%"> Selling Price </th>
 			<th width="6%"> QTY </th>
@@ -249,7 +443,7 @@ window.onload=startclock;
 			<td><?php echo $row['product_name']; ?></td>
 			<td><?php echo $row['supplier']; ?></td>
 			<td><?php echo $row['date_arrival']; ?></td>
-			<td><?php echo $row['expiry_date']; ?></td>
+	
 			<td><?php
 			$oprice=$row['o_price'];
 			echo formatMoney($oprice, true);
@@ -318,6 +512,7 @@ return false;
 
 });
 </script>
+<?php	}	?>
 </body>
 <?php include('footer.php');?>
 

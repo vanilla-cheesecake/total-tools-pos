@@ -99,6 +99,27 @@ $finalcode='RS-'.createRandomPassword();
 ?>
 <body>
 <?php include('navfixed.php');?>
+
+<?php
+$position=$_SESSION['SESS_LAST_NAME'];
+if($position=='cashier') { ?>
+<div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span2">
+          <div class="well sidebar-nav" style="background-color: rgb(0,113,122);">
+              <ul class="nav nav-list">
+              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
+			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a>  </li>             
+			<li class="active"><a href="customer.php"><i class="icon-group icon-2x"></i> Customers </a>                                    </li>
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Check Stocks</a>                                     </li>
+
+			</div><!--/.well -->
+        </div><!--/span-->
+
+<?php }
+if($position=='admin'){?>
+
+
 <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
@@ -124,6 +145,10 @@ $finalcode='RS-'.createRandomPassword();
 				</ul>     
           </div><!--/.well -->
         </div><!--/span-->
+
+		
+<?php } ?>
+
 	<div class="span10">
 	<div class="contentheader">
 			<i class="icon-group"></i> Customers
@@ -230,6 +255,6 @@ return false;
 });
 </script>
 </body>
-<?php include('footer.php');?>
+<?php  include('footer.php');?>
 
 </html>

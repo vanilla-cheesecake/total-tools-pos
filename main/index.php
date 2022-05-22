@@ -103,9 +103,9 @@ if($position=='cashier') {
                     <ul class="nav nav-list">
                         <li class="active"><a href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>
                         <li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a></li>
-                    
-                        <li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a></li>
-        
+                        <li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>  </li>
+                        <li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Check Stocks</a>                                     </li>
+                  
    
                         <br><br><br><br><br><br>
                         <li>
@@ -128,8 +128,18 @@ if($position=='cashier') {
                     <li class="active">Dashboard</li>
                 </ul>
                 <font style=" font:bold 30px 'Aleo';  color:#222222;">
-                    <center>TOTAL TOOLS ONE-STOP TOOL SHOP</center>
+                    <center>TOTAL TOOLS ONE-STOP TOOL STATION</center><br>
+                    <center>CASHIER</center>
                 </font>
+                <div id="mainmain">
+                    <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i><br>Sales</a>
+
+                    <a href="customer.php"><i class="icon-group icon-2x"></i><br> Customers</a>
+
+                    <a href="../index.php"><font color="red"><i class="icon-off icon-2x"></i></font><br>Logout</a>
+  
+                    <div class="clearfix"></div>
+                </div>
    
     <?php
 }

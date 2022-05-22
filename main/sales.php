@@ -115,9 +115,24 @@ $finalcode='invoice-'.createRandomPassword();
 $position=$_SESSION['SESS_LAST_NAME'];
 if($position=='cashier') {
 ?>
-<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>
-
-<a href="../index.php">Logout</a>
+<div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span2">
+          <div class="well sidebar-nav" style="background-color: rgb(0,113,122);">
+              <ul class="nav nav-list">
+              <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+			<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>
+			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>  </li>
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Check Stocks</a>                                     </li>
+			<br><br><br><br><br><br>
+                        <li>
+                            <div class="hero-unit-clock">
+                                <form name="clock">
+                                    <fontcolor="white">Time: <br></font>&nbsp;<input style="width:150px;" type="submit" class="trans" name="face" value="">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>             
 <?php
 }
 if($position=='admin') {
@@ -145,6 +160,7 @@ if($position=='admin') {
 			</li>
 				
 				</ul>    
+				
 <?php } ?>				
           </div><!--/.well -->
         </div><!--/span-->
@@ -178,7 +194,9 @@ if($position=='admin') {
 		$result->execute();
 		for($i=0; $row = $result->fetch(); $i++){
 	?>
-		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - <?php echo $row['gen_name']; ?> - <?php echo $row['product_name']; ?> | Expires at: <?php echo $row['expiry_date']; ?></option>
+		<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> - 
+		<?php echo $row['gen_name']; ?> | Stock: 
+		<?php echo $row['qty']; ?></option>
 	<?php
 				}
 			?>
